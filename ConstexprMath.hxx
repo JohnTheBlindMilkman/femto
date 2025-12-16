@@ -260,13 +260,6 @@
             {
 				return (t > 0) ? T(1) + (ExpImpl<Is + 1,T>(t) + ...) : T(1) / (T(1) + (ExpImpl<Is + 1,T>(-t) + ...));
             }
-
-			template <Arithmetic T>
-			[[nodiscard]] constexpr T ExpVer2(T x, T prev, T curr, std::size_t depth) noexcept
-			{
-				return (prev == curr) ? curr : ExpVer2(x, curr, curr / (depth + x - (depth * x / (depth + 1))), depth + 1);
-				// return (...) ? T(1) : depth + x - (depth * x / ExpVer2(x, ++depth));
-			}
         }
 
         template <Arithmetic T>
@@ -277,16 +270,6 @@
                 (t == std::numeric_limits<T>::infinity()) ? std::numeric_limits<T>::infinity() :
                 IsNan(t) ? std::numeric_limits<T>::quiet_NaN() :
                 DetailExp::Exp(t, std::make_index_sequence<Limits::Depth<T>::limit>{});
-        }
-
-		template <Arithmetic T>
-        [[nodiscard]] constexpr T ExpVer2(T t) noexcept
-        {
-            return (t == 0) ? T(1) : 
-                (t == -std::numeric_limits<T>::infinity()) ? T(0) :
-                (t == std::numeric_limits<T>::infinity()) ? std::numeric_limits<T>::infinity() :
-                IsNan(t) ? std::numeric_limits<T>::quiet_NaN() :
-                (T(1) + t) / (T(1) - (DetailExp::ExpVer2(t,T(0),t,2)));
         }
 
 		// Square root

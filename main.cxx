@@ -32,10 +32,16 @@ struct Z
     constexpr double operator()() {return z;}
 };
 
+struct R
+{
+    double x;
+    constexpr double operator()() {return x;}
+};
+
 int main()
 {
     for (const double &val : {-10.,-5.,-1.,0.,1.,5.,10.})
     {
-        std::cout << std::setprecision(15) << "x = " << val << "\tf(x) = " << Math::Exp(val) << "\tg(x) = " << Math::ExpVer2(val) << "\th(x) = " << std::exp(val) << "\n";
+        std::cout << std::setprecision(15) << "x = " << val << "\tf(x) = " << Math::Exp(val) << "\th(x) = " << std::exp(val) << "\n";
     }
 }

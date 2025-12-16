@@ -12,8 +12,8 @@ add_compile_options(-Wall -Wextra -Wpedantic -Werror -fconcepts-diagnostics-dept
 add_executable(test main.cxx)
 target_compile_features(test PUBLIC cxx_std_20)
 
-#add_executable(test2 main2.cxx)
-#target_compile_features(test2 PUBLIC cxx_std_20)
+add_executable(test2 main2.cxx)
+target_compile_features(test2 PUBLIC cxx_std_20)
 
 add_executable(test3 main3.cxx)
 target_compile_features(test3 PUBLIC cxx_std_20)
