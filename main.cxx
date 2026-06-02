@@ -24,6 +24,5 @@ int main()
     constexpr Function f = pow(x,a);
     constexpr double result = f(X{2});
 
-    // (0.4^2-(0.6-(x^2+y^2)^0.5)^2)^0.5
     std::cout << result << "\n";
 }

@@ -30,16 +30,12 @@
 			// factorial
 			namespace detail_factorial
 			{
-				template<Arithmetic T, std::size_t ... Is>
-				[[nodiscard]] consteval T factorial_impl(std::index_sequence<Is...>) noexcept
-				{
-					return ((Is + 1) * ... * 1); // * 1 in case the index sequence is empty and fold expression cannot fold anything
-				}
-
 				template<Arithmetic T, std::size_t N>
 				[[nodiscard]] consteval T factorial() noexcept
 				{
-					return factorial_impl<T>(std::make_index_sequence<N>{});
+					T result = 1;
+					for ( T i = 1; i <= N; ++i ) {result *= i;}
+					return result;
 				}
 
 				template <Arithmetic T, std::size_t ... Is>
@@ -49,11 +45,11 @@
 				}
 
 				template <Arithmetic T> 
-				static constexpr std::array<T,limits::Depth<T>::limit + 1> factorials = make_factorials<T>(std::make_index_sequence<limits::Depth<T>::limit>{});
+				static constexpr std::array<T,limits::Depth<T>::limit + 1> factorials = make_factorials<T>(std::make_index_sequence<limits::Depth<T>::limit + 1>{});
 			}
 
 			template<Arithmetic T, std::size_t N>
-			[[nodiscard]] constexpr T factorial() noexcept
+			[[nodiscard]] consteval T factorial() noexcept
 			{
 				return detail_factorial::factorials<T>[N];
 			}

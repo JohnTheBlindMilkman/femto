@@ -124,8 +124,7 @@
                 [[nodiscard]] constexpr decltype(auto) Diff(T lhsFunc, U rhsFunc) const
                 {
                     // (a + b)' = a' + b'
-                    return lhsFunc.template Diff<W>() + 
-                        rhsFunc.template Diff<W>();
+                    return lhsFunc.template Diff<W>() + rhsFunc.template Diff<W>();
                 }
                 constexpr decltype(auto) operator()(const Arithmetic auto &lhs, const Arithmetic auto &rhs) const
                 {
