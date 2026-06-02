@@ -4,12 +4,15 @@
     #include "Expressions.hxx"
     #include <numeric>
 
-    namespace Constants
+    namespace femto
     {
-        inline constexpr Constant protonMassMeV(938.27208816);
-        inline constexpr Constant fineStructure(0.007297);
-        inline constexpr Constant piConst(std::numbers::pi);
-        inline constexpr Function elementaryCharge = Sqrt(Constant(4) * piConst * fineStructure);
+        namespace constants
+        {
+            inline constexpr Constant protonMassMeV(938.27208816);
+            inline constexpr Constant fineStructure(0.007297);
+            inline constexpr Constant piConst(std::numbers::pi);
+            inline constexpr Function elementaryCharge = sqrt(Constant(4) * piConst * fineStructure);
+        }
     }
 
 #endif
